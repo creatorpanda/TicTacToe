@@ -4,4 +4,4 @@ Scoreboard, winner announcer and score reset button included! :)
 enjoy!
 
 
-In case you don't know what to do: Click on the green "Clone or Download" button, click "Download Zip". Unzip it, open tictactoe.html and have fun!
+In case you don't know what to do: Click on the green "Clone or Download" button, click "Download Zip". Unzip it, open "tictactoe.html" and have fun!
