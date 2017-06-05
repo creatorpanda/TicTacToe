@@ -1,0 +1,162 @@
+<html>
+<header>
+<title>TTT Explanator</title>
+<style>
+h1 {color: white;}
+h2 {color: Lime;}
+h3 {color: white;}
+p {color: white; font-size: 20; padding:15;}
+a {color: red; text-decoration: none;}
+img {width:300px;}
+blockquote {background-color: orange; width: 80%; font-size: 18; text-align:left; border-radius:5px; padding:7px;}
+code {color: purple;}
+</style>
+</header>
+<body style="background-color:black">
+<CENTER>
+<table >
+<tr>
+<td align="right"><img src="SDYoshi.png"></td>
+<td align="center"><h1 >Super Mario Theme TicTacToe</h1></td>
+<td align="right"><img src="Bowser.png"></td>
+</tr>
+</table>
+<table>
+<h3>Project by <a href="https://github.com/creatorpanda" target="_blank">creatorpanda</a></h3>
+<h3>This is a page where <a href="https://github.com/creatorpanda/TicTacToe/blob/master/tictactoe.html" target="_blank">TicTacToe's code</a> is displayed and analyzed</h3>
+</table>
+<table>
+<p>
+Paragraphs are seperated according to HTML Tags:<br/>
+CSS<br/>
+Script<br/>
+</p>
+<hr>
+<h1>CSS</h1>
+<p>Everything contained in the style tag is here:</p>
+<blockquote>
+<code>
+td {text-align:center;}<br/>
+div {color:white;}<br/>
+p {color:white;}<br/>
+td{ border-style: solid; border-color: white;}<br/>
+a {color: red; text-decoration: none;}<br/>
+</code>
+</blockquote>
+<p>After the background was placed, everything had to be adjusted so they fit in. All text colors and <abbr title="tic tac toe's">ttt's</abbr> borders were set to white so they matched with the background. Link buttons were set red 
+and underlining was disabled with the <code>text-decoration: none</code> command. Most of the embellishment was done by the Super Mario World map background. Everything else was adapted to the new environment.
+</p>
+<hr>
+<h1>Script</h1>
+<p>There are three scripts containing one function each that compose the game:</p>
+<h2>Script that checks if the winning conditions are fullfiled</h2>
+<p>First of all, three variables are created and values are set. Variable <code>win</code> is a boolean. it turns TRUE when a players wins and acts the proper activities explained later. <code>winnerx</code> and <code>winnero</code> are counters. Every time a player wins, a point is added there.</p>
+<blockquote>
+<code>
+var win;<br/>
+var winnerx;<br/>
+var winnero;<br/>
+winnerx = 0;<br/>
+winnero = 0;<br/>
+win = false;
+</code>
+</blockquote>
+<p>It's a script with a huge function that is not shown as whole. It contains seventeen IF statements, each for every possible winning combinations,
+so only one is going to be explained. Everything applies to the other fifteen. Appart of them, there is a last IF statement that is going to be explained separately. It's the DRAW mechanism.
+So, the function checks the wining conditions by comparing pictures. If certain combinations of pictures are formed in the board, then certain actions are taken.
+Inside the script's function, the following actions take place:<br/>
+Checks if a certain combination of pictures the players enter form a winning combination.<br/>
+If so, the winner is announced, all shells are removed from all blocks (the blank picture is reloaded everywhere), a win point is added to the winner's score (if there is a winner - remember the draw treaty), the <code>turn</code> variable is nullified and the boolean variable <code>winner</code> turns TRUE.</p>
+<blockquote>
+<code>
+if (document.getElementById("1").src.match("xsymbol.png") && document.getElementById("2").src.match("xsymbol.png") && document.getElementById("3").src.match("xsymbol.png")){<br/>
+document.getElementById("winphrase").innerHTML ="Green won!";<br/>
+document.getElementById("1").src = "spacesymbol.png";<br/>
+document.getElementById("2").src = "spacesymbol.png";<br/>
+document.getElementById("3").src = "spacesymbol.png";<br/>
+document.getElementById("4").src = "spacesymbol.png";<br/>
+document.getElementById("5").src = "spacesymbol.png";<br/>
+document.getElementById("6").src = "spacesymbol.png";<br/>
+document.getElementById("7").src = "spacesymbol.png";<br/>
+document.getElementById("8").src = "spacesymbol.png";<br/>
+document.getElementById("9").src = "spacesymbol.png";<br/>
+winnerx = winnerx + 1;<br/>
+turn=0<br/>
+win = true;<br/>
+}
+</code>
+</blockquote>
+<p>And this is the statement that announces a DRAW. Its a combination of two factors. The idea behind it, is this: <i>"It takes 9 turns to completely fill the board with shells. So, if the ninth turn is reached (<code>if (turn==9</code>) and still no winner is determined (<code>&& win==false)</code>) then take the proper actions."</i> 
+These actions are removing all placed shells from the board (again, the blank picture is reloaded everywhere), the variable <code>turn</code> resets to zero and the message "Draw!" is printed on a specified window. In case someone wins at the ninth turn, then this statement is overlooked and the corresponding winning statement is triggered.</p>
+<blockquote>
+<code>
+if (turn==9 && win==false){<br/>
+document.getElementById("winphrase").innerHTML ="Draw!";<br/>
+document.getElementById("1").src = "spacesymbol.png";<br/>
+document.getElementById("2").src = "spacesymbol.png";<br/>
+document.getElementById("3").src = "spacesymbol.png";<br/>
+document.getElementById("4").src = "spacesymbol.png";<br/>
+document.getElementById("5").src = "spacesymbol.png";<br/>
+document.getElementById("6").src = "spacesymbol.png";<br/>
+document.getElementById("7").src = "spacesymbol.png";<br/>
+document.getElementById("8").src = "spacesymbol.png";<br/>
+document.getElementById("9").src = "spacesymbol.png";<br/>
+turn=0
+}
+</code>
+</blockquote>
+<h2>Script that prints the score</h2>
+<p>This is the smallest script containing only two commands. It keeps changing the score phrase of the scoreboard by printing the phrase again, plus the new values of the <code>winnerx</code> and <code>winnero</code> variables that are manipulated by the previous script.</p>
+<blockquote>
+<code>
+document.getElementById("scoreboard1").innerHTML="Green wins= "+winnerx;<br/>
+document.getElementById("scoreboard2").innerHTML="Red wins= "+winnero;
+</code>
+</blockquote>
+<h2>Script that arranges players' turns</h2>
+<p>This is the main script. It makes the game work by using all previous scripts' functions in one, the ones explained earlier. It's a script with a huge function that is not shown as whole. It contains nine cases, each for every <abbr title="tic tac toe's">ttt's</abbr> box,
+so only one is going to be explained. Everything applies to the other eight. First of all, two variables are created and values are set. The variable <code>player</code> is actually a boolean. It switches between the values one and zero. One for the green player and zero for the red player. Each time a player finishes his/her turn, this variable changes value, letting the other play. 
+Remember the variable <code>turn</code>? After every turn, its value goes up by one. Once a winner is announced or it reaches nine (turns to fill the whole board with shells), or both, it resets to zero, ready to serve for the next match.</p>
+<blockquote>
+<code>
+var player = 1;<br/>
+var turn;<br/>
+turn=0;<br/>
+</code>
+</blockquote>
+<p>Inside the function's switch, the following actions take place:<br/>
+The case checks who's turn is and if the tile the player pressed is blank. If the pressed tile is blank (the transparent pic is set) then it changes to the player's symbol.
+After that, the variable <code>turn</code> goes up by one, the variable <code>player</code> changes so the other player can play. Before that, the functions <code>winconditions()</code> and <code>winnerspeaker()</code> check if the winning conditions were fullfiled  and print if there was a winner or a draw respectively.</p>
+<blockquote>
+<code>
+case 1:<br/>
+if ((document.getElementById("1").src.match("spacesymbol.png")) && (player == 1)){<br/>
+document.getElementById("1").src = "xsymbol.png";<br/>
+turn = turn + 1;<br/>
+winconditions();<br/>
+player = 0;<br/>
+winnerspeaker();<br/>
+}<br/>
+else if ((document.getElementById("1").src.match("spacesymbol.png")) && (player == 0)) {<br/>
+document.getElementById("1").src = "osymbol.png";<br/>
+turn = turn + 1;<br/>
+winconditions();<br/>
+player = 1;<br/>
+winnerspeaker();<br/>
+}<br/>
+break;<br/>
+</code>
+</blockquote>
+<br/>
+<p>And that was it! :)<br/>
+Thanks for reading so far! Check out the program <a href="https://github.com/creatorpanda/SuperMarioTTT" target="_blank">here</a>! (Read the README file for more info)</p>
+</table>
+</CENTER>
+<table>
+<hr>
+<p>Github: <a href="https://github.com/creatorpanda" target="_blank">creatorpanda</a> | Creation of 2017 | <a href="https://twitter.com/creatorpanda" target="_blank">Follow me! :)</a></p>
+</body>
+</html>
+</table>
+</body>
+</html>
