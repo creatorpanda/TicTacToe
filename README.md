@@ -1,4 +1,6 @@
 # SuperMarioTTT
+***Please note that this is an old project, served as an HTML/CSS tutorial. It no longer represents my current skills.***
+
 SuperMario themed TicTacToe game **made from scratch, based on JavaScript**, **tested only on Google Chrome**.
 Scoreboard, winner announcer and score reset button included! :)
 enjoy!
